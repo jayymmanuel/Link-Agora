@@ -1,36 +1,30 @@
+// Importing the React library, which is required for creating and working with React components.
 import React from "react";
+import { TbCalendarStar } from "react-icons/tb";
+import { FaPeopleGroup } from "react-icons/fa6";
+import { HiOutlineMailOpen } from "react-icons/hi";
+import { FiActivity } from "react-icons/fi";
 
-const DashboardButton = ({ title, icon, subtitle, info }) => {
+// Importing the Link component from the react-router-dom library.
+// The Link component is used for creating navigation links in React applications.
+import { Link } from "react-router-dom";
+
+const DashboardButton = ({ icon, title, whereto }) => {
   return (
-    <a href="#" className="group relative flex flex-col mb-4 w-40 h-40 sm:w-52 sm:h-52 md-medium md:w-72 md:h-full lg:w-64 rounded-md border bg-white text-black py-6 sm:py-8 px-2 shadow-lg transition-all duration-200 ease-in-out responsive-stats-card text-center text-decoration-none">
-
-      <div className="flex flex-col items-center justify-between -mt-4 sm:-mt-5">
-        <div className="flex items-center">
-          <div
-            className="text-sm sm:text-xxs md:text-base font-bold mt-4 sm:mt-8"
-            style={{ whiteSpace: "nowrap" }}
-          >
-            {title}
-          </div>
-        </div>
-      </div>
-
-      <div className="flex-grow flex flex-col justify-center items-center">
-        <p className="font-sans text-3xl sm:text-4xl md:text-5xl mt-1 sm:mt-2">
-          {icon}
-        </p>
-        <p
-          className="text-xs sm:text-sm text-gray-500 mt-3 sm:mt-6"
-          style={{ whiteSpace: "nowrap" }}
-        >
-          {subtitle}
-        </p>
-      </div>
-
-      <div className="absolute top-0 left-0 flex h-full w-full items-center justify-center rounded-md bg-[#8A2623] text-white px-4 sm:px-6 opacity-0  group-hover:opacity-100">
-        <span className="text-xs sm:text-sm font-bold">{info}</span>
-      </div>
-    </a>
+    <Link to={whereto} className="w-full">
+            <div className="w-full h-36 lg:h-[16.5rem] md:h-44 sm:h-56 flex flex-col justify-center bg-white border border-zinc-200 hover:bg-amazon-green shadow-lg rounded-xl text-center p-4 md:p-5 dark:border-gray-700 text-amazon-green hover:text-white">
+              {/* Icon */}
+              <div className="flex justify-center items-centermx-auto">
+                <TbCalendarStar size={50} />
+              </div>
+              {/* End Icon */}
+              <div className="mt-3">
+                <h3 className="text-sm sm:text-lg font-semibold">
+                  {title}
+                </h3>
+              </div>
+            </div>
+    </Link>
   );
 };
 

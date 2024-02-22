@@ -1,222 +1,251 @@
-import React, { useState } from "react";
-import { Fragment } from "react";
-import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { PiBellSimpleBold } from "react-icons/pi";
-import { PiBellSimpleRingingBold } from "react-icons/pi";
-import { BiExclude } from "react-icons/bi";
-import { FiHelpCircle } from "react-icons/fi";
-import { FaHandsHelping } from "react-icons/fa";
-import { X } from "lucide-react";
-import NotificationCenter from "../../../Modals/Notification/NotificationCenter";
+// Importing the React library, which is required for creating and working with React components.
+import React from "react";
 
-const navigation = [
-  { name: "Take me to BMF", href: "https://bmfonline.co.za/", current: false },
-  { name: "Need Help", href: "/needhelp", current: false },
-];
+// Importing the useState, useEffect, and useRef hooks from the React library.
+// - The useState hook allows functional components to manage state.
+// - The useEffect hook is used for performing side effects in functional components, such as data fetching or subscribing to external events.
+// - The useRef hook is used to create a mutable ref objects
+import { useState, useEffect, useRef } from "react";
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
+// Importing Link and useLocation from the "react-router-dom" library.
+// - The Link component is used for navigation within a React application, creating navigational links that update the URL without triggering a full page reload.
+// - The useLocation hook is used to access information about the current URL location in the React Router context, enabling components to respond to changes in the URL.
+import { Link, useLocation } from "react-router-dom";
 
-export default function NavBar() {
-  const [isHovered, setIsHovered] = useState(false);
-  const [isNotificationCenterOpen, setIsNotificationCenterOpen] =
-    useState(false);
+// Importing Image Asset(s)
+import logo from "../../../assets/logooption1.png";
 
-  const handleMouseEnter = () => {
-    setIsHovered(true);
+// Importing React Icon(s)
+import { FiShoppingBag } from "react-icons/fi";
+import { TbBell } from "react-icons/tb";
+import { TbBellRingingFilled } from "react-icons/tb";
+import { PiUserRectangleFill } from "react-icons/pi";
+import { HiOutlineMenu } from "react-icons/hi";
+import { CgClose } from "react-icons/cg";
+import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import { FaRegHeart } from "react-icons/fa6";
+import { FaHeart } from "react-icons/fa6";
+import Reveal from "../../Reveal/Reveal";
+
+
+
+const Navbar = () => {
+  const location = useLocation();
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isNestedOpen, setIsNestedOpen] = useState(false);
+  const [showMenuItems, setShowMenuItems] = useState(false);
+  const [isFavHovered, setIsFavHovered] = useState(false);
+  const dropdownRef = useRef(null);
+
+  const toggleNested = () => {
+    setIsNestedOpen(!isNestedOpen);
   };
 
-  const handleMouseLeave = () => {
-    setIsHovered(false);
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+    setShowMenuItems(false);
   };
 
-  const openNotificationCenter = () => {
-    setIsNotificationCenterOpen(true);
+  const toggleMenuItems = () => {
+    setShowMenuItems(!showMenuItems);
   };
 
-  const closeNotificationCenter = () => {
-    setIsNotificationCenterOpen(false);
+  const closeDropdown = () => {
+    setIsDropdownOpen(false);
   };
+
+  const isActive = (path) => {
+    return location.pathname === path ? "border-b-2" : "";
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
+  const isUserSignedIn = true;
 
   return (
-    <>
-      <Disclosure
-        as="nav"
-        className="bg-white shadow-md"
-        style={{ position: "sticky", top: 0, zIndex: 50 }}
-      >
-        {({ open }) => (
-          <>
-            <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-              <div className="relative flex h-16 items-center justify-between">
-                <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                  <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
-                    <span className="absolute -inset-0.5" />
-                    <span className="sr-only">Open main menu</span>
-                    {open ? (
-                      <X className="block h-6 w-6" aria-hidden="true" />
-                    ) : (
-                      <FaHandsHelping
-                        className="block h-6 w-6"
-                        aria-hidden="true"
-                      />
-                    )}
-                  </Disclosure.Button>
+    <nav className="bg-[#223146] p-4 px-10 fixed w-full top-0 z-50 shadow-xl">
+      <div className="container mx-auto flex justify-between items-center">
+          {/* Company Logo */}
+          <div>
+            <Link to="/">
+              <img src={logo} alt="Best Hubs Logo" className="w-12 h-auto" />
+            </Link>
+          </div>
+
+          {/* Nav Menu Items */}
+          <div className="hidden lg:flex items-center ml-[12rem] gap-4">
+            <div className={`mt-4 pb-4 ${isActive("/")}`}>
+              <Link
+                className="flex items-center text-white font-medium focus:outline-none mx-2 text-sm md:text-sm lg:text-base xl:text-md"
+                to="/"
+              >
+                Home
+              </Link>
+            </div>
+            <div className={`mt-4 pb-4 ${isActive("/schedule")}`}>
+              <Link
+                className="flex items-center text-white font-medium focus:outline-none mx-2 text-sm md:text-sm lg:text-base xl:text-md"
+                to="/schedule"
+                style={{ whiteSpace: "nowrap" }}
+              >
+                Calendar
+              </Link>
+            </div>
+
+            <div
+              ref={dropdownRef}
+              className={`relative inline-block text-left mt-4 pb-4 ${
+                isActive("/shop-flavour") ||
+                isActive("/shop-pipe") ||
+                isActive("/product-detail")
+              }`}
+            >
+              <button
+                className="flex items-center text-white font-medium focus:outline-none mx-2 text-sm md:text-sm lg:text-base xl:text-md"
+                onClick={toggleDropdown}
+              >
+                Products
+                {isDropdownOpen ? (
+                  <MdKeyboardArrowUp className="ml-2" />
+                ) : (
+                  <MdKeyboardArrowDown className="ml-2" />
+                )}
+              </button>
+              {isDropdownOpen && (
+                <div className="absolute z-50 p-2 left-0 mt-6 w-[15rem] bg-white rounded-md shadow-2xl">
+                  <div className="py-2">
+                    <Link
+                      to="/shop-flavour"
+                      className="block px-4 py-2 text-gray-500 rounded-md hover:bg-gray-200 hover:text-mystique-green"
+                      onClick={closeDropdown}
+                    >
+                      Shisha Flavour
+                    </Link>
+                  </div>
+                  <div className="py-2">
+                    <Link
+                      to="/shop-pipes"
+                      className="block px-4 py-2 text-gray-500 rounded-md hover:bg-gray-200 hover:text-mystique-green"
+                      onClick={closeDropdown}
+                    >
+                      Shisha Pipes
+                    </Link>
+                  </div>
                 </div>
-                <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                  <div className="hidden sm:ml-6 sm:block">
-                    <div className="flex space-x-4">
-                      {navigation.map((item) => (
-                        <a
-                          key={item.name}
-                          href={item.href}
-                          className={classNames(
-                            item.current
-                              ? "bg-gray-900 text-white"
-                              : "text-black bg-gray-200 hover:bg-[#01663E] hover:text-white",
-                            "rounded-md px-3 py-2 text-sm font-medium flex items-center" // Add flex here
-                          )}
-                          aria-current={item.current ? "page" : undefined}
-                        >
-                          {item.name === "Take me to BMF" && (
-                            <>
-                              <BiExclude className="inline-block h-5 w-5 mr-2" />{" "}
-                              {item.name}
-                            </>
-                          )}
-                          {item.name === "Need Help" && (
-                            <>
-                              <FiHelpCircle className="inline-block h-5 w-5 mr-2" />{" "}
-                              {item.name}
-                            </>
-                          )}
+              )}
+            </div>
+          </div>
+ 
+        {/* On Small Screen Button to toggle (small screen) Menu Items */}
+        <button
+          className="lg:hidden text-white focus:outline-none"
+          onClick={toggleMenuItems}
+        >
+          {showMenuItems ? <CgClose size={25} /> : <HiOutlineMenu size={25} />}
+        </button>
+
+        {/* (small screen) Menu Items */}
+        {showMenuItems && (
+          <div className="lg:hidden absolute top-[4.5rem] left-0 w-full bg-mystique-green border-t text-white">
+            <Reveal delay={0.6} duration={0.7}>
+              <div className="container mx-auto py-2 w-full pr-6 pl-6">
+                <a
+                  href="my-bikes"
+                  className="flex items-center py-2 pl-4 w-full pr-10 mb-4"
+                >
+                  <span className="ml-4 text-md font-medium">Home</span>
+                </a>
+                <a
+                  href="#"
+                  className="flex items-center py-2 pl-4 w-full pr-10 mb-4"
+                >
+                  <span className="ml-4 text-md font-medium">About Us</span>
+                </a>
+
+                <div className="relative mt-6 mb-4 mx-auto text-left px-4">
+                  <button
+                    onClick={toggleNested}
+                    type="button"
+                    className="py-3 inline-flex items-center gap-x-2 ml-4 text-md font-medium rounded-lg text-white disabled:opacity-50 disabled:pointer-events-none"
+                  >
+                    Products
+                    {isNestedOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}
+                  </button>
+
+                  <div
+                    className={`transition-opacity transition-margin duration-300 ${
+                      isNestedOpen ? "opacity-100 mt-4" : "opacity-0 hidden"
+                    } min-w-[15rem] bg-amazon-green shadow-md rounded-lg p-2 divide-y divide-gray-200 border border-zinc-100 dark:divide-gray-700`}
+                  >
+                    <div className="py-2 first:pt-0 last:pb-0">
+                      <Link to="/dummy">
+                        <a className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-300 dark:hover:text-white">
+                          Shop Shisha Flavour
                         </a>
-                      ))}
+                      </Link>
+                      <Link to="/dummy">
+                        <a className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-300 dark:hover:text-white">
+                          Shop Shisha Pipe
+                        </a>
+                      </Link>
                     </div>
                   </div>
                 </div>
-                <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                  {/* Open NotificationCenter Button */}
-                  <button
-                    type="button"
-                    className="relative rounded-lg bg-gray-200 p-1 text-gray-400 hover:text-[#01663E] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                    onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}
-                    onClick={openNotificationCenter} // Add onClick to open NotificationCenter
-                  >
-                    <span className="absolute -inset-1.5" />
-                    <span className="sr-only">View notifications</span>
-                    {isHovered ? (
-                      <PiBellSimpleRingingBold
-                        className="h-6 w-6 transition-transform transform hover:scale-110"
-                        aria-hidden="true"
-                      />
-                    ) : (
-                      <PiBellSimpleBold
-                        className="h-6 w-6 transition-transform transform hover:scale-110"
-                        aria-hidden="true"
-                      />
-                    )}
-                  </button>
-
-                  <div class="inline-block h-8 w-0.5 bg-gray-200 mr-5 ml-5"></div>
-
-                  {/* Profile dropdown */}
-                  <Menu as="div" className="relative">
-                    <div>
-                      <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                        <span className="absolute -inset-1.5" />
-                        <span className="sr-only">Open user menu</span>
-                        <img
-                          className="h-8 w-8 rounded-full"
-                          src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80"
-                          alt=""
-                        />
-                      </Menu.Button>
-                    </div>
-                    <Transition
-                      as={Fragment}
-                      enter="transition ease-out duration-100"
-                      enterFrom="transform opacity-0 scale-95"
-                      enterTo="transform opacity-100 scale-100"
-                      leave="transition ease-in duration-75"
-                      leaveFrom="transform opacity-100 scale-100"
-                      leaveTo="transform opacity-0 scale-95"
-                    >
-                      <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                        <Menu.Item>
-                          {({ active }) => (
-                            <a
-                              href="/profile"
-                              className={classNames(
-                                active ? "bg-gray-100" : "",
-                                "block px-4 py-2 text-sm text-gray-700"
-                              )}
-                            >
-                              Your Profile
-                            </a>
-                          )}
-                        </Menu.Item>
-                        <Menu.Item>
-                          {({ active }) => (
-                            <a
-                              href="/needhelp"
-                              className={classNames(
-                                active ? "bg-gray-100" : "",
-                                "block px-4 py-2 text-sm text-gray-700"
-                              )}
-                            >
-                              Settings
-                            </a>
-                          )}
-                        </Menu.Item>
-                        <Menu.Item>
-                          {({ active }) => (
-                            <a
-                              href="#"
-                              className={classNames(
-                                active ? "bg-gray-100" : "",
-                                "block px-4 py-2 text-sm text-gray-700"
-                              )}
-                            >
-                              Sign out
-                            </a>
-                          )}
-                        </Menu.Item>
-                      </Menu.Items>
-                    </Transition>
-                  </Menu>
-                </div>
               </div>
-            </div>
-
-            <Disclosure.Panel className="sm:hidden">
-              <div className="space-y-1 px-2 pb-3 pt-2">
-                {navigation.map((item) => (
-                  <Disclosure.Button
-                    key={item.name}
-                    as="a"
-                    href={item.href}
-                    className={classNames(
-                      item.current
-                        ? "bg-gray-900 text-white"
-                        : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                      "block rounded-md px-3 py-2 text-base font-medium"
-                    )}
-                    aria-current={item.current ? "page" : undefined}
-                  >
-                    {item.name}
-                  </Disclosure.Button>
-                ))}
-              </div>
-            </Disclosure.Panel>
-            {isNotificationCenterOpen && (
-              <NotificationCenter onClose={closeNotificationCenter} />
-            )}
-          </>
+            </Reveal>
+          </div>
         )}
-      </Disclosure>
-    </>
+
+        {/* User Functions */}
+        <div className="hidden lg:flex items-center space-x-6">
+        <Link to="/login-register">
+              <button className="py-3 px-4 inline-flex items-center gap-x-2 text-md font-semibold rounded-lg border bg-[#476070] text-gray-100 hover:bg-white  hover:text-amazon-green whitespace-nowrap">
+                  Take me to BMF
+              </button>
+            </Link>
+
+          <Link to="/my-favourites">
+            <button
+              className="flex items-center font-medium text-white/[.8] hover:text-white sm:my-6"
+              onMouseEnter={() => setIsFavHovered(true)}
+              onMouseLeave={() => setIsFavHovered(false)}
+            >
+              {isFavHovered ? <TbBellRingingFilled size={28} /> : <TbBell size={28} />}
+            </button>
+          </Link>
+
+          <div className="h-6 border-r border-white/[.3]"></div>
+          {/* Conditionally render based on user authentication */}
+          {isUserSignedIn ? (
+            <Link to="/my-account">
+              <button className="flex items-center font-medium text-white/[.8] hover:text-white">
+                <PiUserRectangleFill size={28} />
+              </button>
+            </Link>
+          ) : (
+            <Link to="/login-register">
+              <button className="py-3 px-4 inline-flex items-center gap-x-2 text-md font-semibold rounded-lg border bg-[#476070] text-gray-100 hover:bg-white  hover:text-amazon-green whitespace-nowrap">
+                  Register or Login
+              </button>
+            </Link>
+          )}
+        </div>
+      </div>
+    </nav>
   );
-}
+};
+
+export default Navbar;

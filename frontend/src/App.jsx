@@ -40,7 +40,6 @@ const App = () => {
 
   return (
     <div className="flex bg-[#fafbfd] w-full">
-      {shouldShowNav && <NavSideBar />}
       <div className="flex flex-col flex-grow">
         {shouldShowNav && <NavBar />}
         <div className="flex-grow">
