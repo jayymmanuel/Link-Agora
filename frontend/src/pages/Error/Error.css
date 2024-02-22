@@ -1,0 +1,18 @@
+/* Define the button styles */
+.button {
+    background-color: black; 
+    color: white; 
+    border: 2px solid green; 
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    text-align: center; 
+    text-decoration: none; 
+    display: inline-block; 
+    font-size: 16px; 
+    margin: 10px 5px; 
+    cursor: pointer; 
+  }
+  
+  .button:hover {
+    border-color: red; 
+  }

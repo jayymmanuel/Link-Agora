@@ -1,0 +1,17 @@
+/* App.css */
+
+/* Make NavSidebar sticky */
+.nav-sidebar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0; /* You can adjust the top offset as needed */
+  z-index: 100; /* Adjust the z-index to ensure it appears above other content */
+}
+
+
+/* Make NavBar sticky */
+.nav-bar {
+  position: sticky;
+  top: 0;
+  /* Add more styling properties here if needed */
+}

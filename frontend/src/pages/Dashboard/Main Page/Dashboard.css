@@ -1,0 +1,101 @@
+/* Dashboard.css */
+
+/* Base styles */
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center items horizontally */
+  gap: 2rem;
+  padding: 2rem;
+  width: 100%;
+}
+
+.sidebar,
+.newsfeed {
+  width: 100%;
+}
+
+.stats-group {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Sidebar styles */
+.sidebar {
+  flex: 1;
+  padding-left: 8%;
+  margin-top: 10px;
+  background-color: #fafbfd;
+}
+
+.page-heading {
+  font-size: 2.25rem;
+  font-weight: 600;
+  margin-top: -0.5rem;
+  margin-bottom: 0rem;
+}
+
+.page-subtitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #047857;
+}
+
+.button-group {
+  display: flex;
+  gap: 4rem;
+  margin-bottom: 1rem;
+}
+
+.button-group-2 {
+  display: flex;
+  gap: 4rem;
+  margin-bottom: 1rem;
+}
+
+/* Newsfeed styles */
+.newsfeed {
+  margin-top: 2.8rem;
+  margin-left: 2rem;
+}
+
+/* Media query for small and medium screens */
+@media (min-width: 1038px) {
+  .dashboard-container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .newsfeed {
+    width: 48%; /* Adjust width for the newsfeed */
+  }
+
+  .button-group {
+    gap: 30rem; /* Decrease the gap for small and medium screens */
+  }
+}
+
+/* Media query for small and medium screens */
+@media (min-width: 258px) {
+  .button-group {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem; /* Decrease the gap for small and medium screens */
+  }
+
+  .button-group-2 {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem; /* Decrease the gap for small and medium screens */
+  }
+}
+
+@media (max-width: 1080px) {
+  .page-heading {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-top: 0.25rem;
+    margin-bottom: 0rem;
+  }
+}

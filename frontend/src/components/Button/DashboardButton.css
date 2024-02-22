@@ -1,0 +1,46 @@
+/* StatsCard.css */
+
+
+
+/* Add your responsive styles within this media query */
+@media (min-width: 1235px) {
+  .responsive-stats-card {
+    /* Adjust font size and padding for larger screens */
+    font-size: 18px;
+    padding: 20px;
+    width: 100%;
+    /* Add more responsive styles as needed */
+  }
+
+}
+
+/* Keep the original size at 587px */
+@media (min-width: 587px) and (max-width: 1234px) {
+  .responsive-stats-card {
+    /* Reset font size, padding, and margin to keep the original size */
+    font-size: initial;
+    padding: initial;
+    /* Add more styles to maintain the original appearance */
+  }
+
+}
+
+@media (max-width: 640px) {
+  .sm\:text-xs {
+      font-size: 0.45rem;
+      line-height: 1rem;
+  }
+
+}
+
+
+/* Apply xxs font size only when screen width is smaller than 250px */
+@media (max-width: 249px) {
+  .text-xxs {
+    font-size: 0.65rem; 
+    line-height: 1rem; 
+  }
+
+}
+
+
