@@ -4,7 +4,7 @@ import { FiSearch } from "react-icons/fi";
 const SearchBar = () => {
   return (
     <div>
-      <div class="flex items-center p-6 space-x-6 rounded-xl bg-white border-gray-200 border mb-12">
+      <div class="flex items-center p-6 space-x-6 rounded-xl bg-zinc-700 border-zinc-500 border mb-12">
         <div class="relative w-full flex items-center mt-6 md:mt-0">
           <span class="absolute">
             <FiSearch className="w-5 h-5 ml-2" color="#6d6d6d" />
@@ -17,9 +17,10 @@ const SearchBar = () => {
           />
         </div>
 
-        <div class="bg-[#116239] w-44  h-9 text-white text-sm rounded-lg hover:bg-[#8A2623] cursor-pointer flex items-center justify-center">
-          <span>Find Event</span>
-        </div>
+        <button class="bg-light-blue p-4 text-white text-sm font-semibold rounded-lg border border-white hover:text-navy-blue hover:bg-white cursor-pointer flex items-center justify-center">
+  <span class="text-base whitespace-nowrap">Find Event</span>
+</button>
+
 
         {/* <div class=" w-16 h-16 text-black flex items-center justify-center rounded-lg cursor-pointer hover:bg-gray-200">
             <span>List</span>

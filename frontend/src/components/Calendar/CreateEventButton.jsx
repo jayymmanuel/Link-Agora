@@ -10,10 +10,10 @@ export default function CreateEventButton() {
   return (
     <button
       onClick={() => setShowEventModal(true)}
-      className="border p-2 rounded-lg flex w-[10.5rem] h-12 items-center bg-[#01663E] hover:bg-[#8A2623]"
+      className="border p-4 rounded-lg flex w-full h-12 items-center bg-light-blue hover:bg-navy-blue"
     >
-      <BiSolidCalendarPlus alt="create_event" className="w-6 h-6" color="#FFFFFF" />
-      <span className="pl-3 text-white"> Make Request</span>
+      <span className="text-white"> Make Request</span>
+      <BiSolidCalendarPlus alt="create_event" className="ml-2 w-6 h-6" color="#FFFFFF" />
     </button>
   );
 }

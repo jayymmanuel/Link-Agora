@@ -34,6 +34,7 @@ import { BiCalendarStar } from "react-icons/bi";
 import { HiOutlineMailOpen } from "react-icons/hi";
 import { FiActivity } from "react-icons/fi";
 import { FaPeopleGroup } from "react-icons/fa6";
+import EventCarousel from "../../../components/Carousel/EventCarousel";
 
 const Dashboard = () => {
   const sectionStyle = {
@@ -52,7 +53,7 @@ const Dashboard = () => {
     setShowBeginShiftModal(false);
   };
   return (
-    <section className="mt-20 flex items-center justify-center dark:bg-zinc-900 lg:h-screen">
+    <section className="flex items-center justify-center dark:bg-zinc-900 lg:h-screen">
       <div className="px-4 py-20 mx-auto max-w-7xl">
         <div className="flex flex-wrap">
 
@@ -128,21 +129,8 @@ const Dashboard = () => {
             </div>
           </div>
 
-          <div
-            className="relative w-full rounded-lg mb-10 lg:mb-0 lg:ml-20 lg:w-2/4"
-            style={sectionStyle}
-          >
-            <div className="relative z-20 p-8 lg:p-2 md:p-6 sm:p-8 border border-zinc-600 object-cover w-full h-full rounded">
-              <img
-                className="w-full h-full object-contain"
-                src={image}
-                alt=""
-              />
-              <div className="absolute bottom-0 right-0 p-4 text-white text-xs font-bold font-palanquin bg-zinc-800 rounded-full mb-4 mr-4 px-10">
-                Upcoming Event
-              </div>
-            </div>
-          </div>
+<EventCarousel
+whereto="/event-details"/>
         </div>
       </div>
     </section>

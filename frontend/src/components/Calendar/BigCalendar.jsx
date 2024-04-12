@@ -1,14 +1,12 @@
 import React, { useState, useContext, useEffect } from "react";
 
-
 import { getMonth } from "../../util";
-import "./BigCalendar.css"; // Import the CSS file
 import CalendarHeader from "./CalendarHeader";
 import Sidebar from "./Sidebar";
 import Month from "./Month";
 import GlobalContext from "../../context/GlobalContext";
 import EventModal from "./EventModal";
-
+import CreateStaffModal from "../../Modals/Create Staff/CreateStaffModel";
 
 function BigCalendar() {
   const [currenMonth, setCurrentMonth] = useState(getMonth());
@@ -20,9 +18,9 @@ function BigCalendar() {
 
   return (
     <React.Fragment>
-      {showEventModal && <EventModal />}
+      {showEventModal && <CreateStaffModal />}
 
-      <div className="h-screen flex flex-col">
+      <div className="h-screen flex flex-col px-10">
         <CalendarHeader />
         <div className="flex flex-1">
           <Sidebar />

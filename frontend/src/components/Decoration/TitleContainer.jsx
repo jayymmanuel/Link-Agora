@@ -1,36 +1,22 @@
 import React from "react";
 
 const TitleContainer = ({ title, subtitle, icon, backgroundImage }) => {
-  const containerStyle = {
-    background: `url(${backgroundImage})`,
-    backgroundSize: "cover",
-    borderRadius: "8px", // Adjust the border radius as needed
-    padding: "20px",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    textAlign: "center",
-    height: "300px", // Set the desired height
-  };
-
-  const titleStyle = {
-    color: "black",
-    fontWeight: "bold",
-    fontSize: "24px",
-  };
-
-  const subtitleStyle = {
-    color: "black",
-    fontWeight: "semibold",
-    fontSize: "16px",
+  const backgroundStyle = {
+    backgroundImage: `url(${backgroundImage})`,
+    height: "300px", // Adding fixed height
   };
 
   return (
-    <div style={containerStyle}>
-      {icon}
-      <h2 style={titleStyle}>{title}</h2>
-      <p style={subtitleStyle}>{subtitle}</p>
+    <div
+      style={backgroundStyle}
+      className="border border-zinc-500 text-white rounded-lg bg-cover bg-center flex flex-col items-center justify-center"
+    >
+                  <div className="w-20 h-20 bg-gainsboro rounded-full p-4 mb-4 text-navy-blue">
+               {icon}
+            </div>
+
+      <h2 className="text-white font-bold text-xl mt-2">{title}</h2>
+      <p className="text-white italic mt-2">{subtitle}</p>
     </div>
   );
 };

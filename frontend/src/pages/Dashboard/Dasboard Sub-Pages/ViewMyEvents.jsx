@@ -1,46 +1,54 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import BarLoader from "react-spinners/BarLoader";
 import TitleContainer from "../../../components/Decoration/TitleContainer";
-import backgroundImage from "./../../../assets/titleBoxBackgroundRed.png";
+import backgroundImage from "./../../../assets/seminar2.png";
 
-import MyEvents from "../../../components/Table/Events/MyEvents";
+import FlavourTable from "../../../components/Table/Flavour Table/FlavourTable";
 
-import { AiTwotoneCalendar } from 'react-icons/ai';
+import { AiTwotoneCalendar } from "react-icons/ai";
+
+// Importing React Icon(s)
+import { BiMoneyWithdraw } from "react-icons/bi";
+import { BiBox } from "react-icons/bi";
+import { FaRegSquareCheck } from "react-icons/fa6";
+
+// Importing Component(s)
+// import { bikeCatalogData } from "../../../components/Table/Flavour Table/StockData";
+// import FlavourTable from "../../../components/Table/Flavour Table/FlavourTable";
+// import TableStat from "../../../components/Stat/TableStat";
 
 const ViewMyEvents = () => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    setLoading(true);
     setTimeout(() => {
       setLoading(false);
     }, 5000);
   }, []);
+
   return (
-    <div className="flex items-center justify-center h-full bg-[#fafbfd]">
-            {loading ? (
-        <BarLoader color={"#01663E"} loading={loading} size={150} />
+    <div>
+      {loading ? (
+        <div className="flex items-center justify-center pt-[25rem]">
+          <BarLoader color={"#476070"} loading={loading} size={100} />
+        </div>
       ) : (
-      <div className="flex flex-col w-full">
-        <div className="w-full bg-[#fafbfd] mb-6 z-10">
-            {/* Page Content */}
-            <div className="w-full px-20 mx-auto lg:container -mt-24">
-              {" "}
-              <TitleContainer
-                title="Personal events"
-                subtitle="View and manage all your created events"
-                icon={<AiTwotoneCalendar size={32} color="black" />}
-                backgroundImage={backgroundImage}
-              />
-            </div>
+        <div className="px-44 mt-6">
+          <div className="w-full mx-auto lg:container">
+            <TitleContainer
+              title="Personal Events"
+              subtitle="View and manage all your created events"
+              icon={<AiTwotoneCalendar size={50} />}
+              backgroundImage={backgroundImage}
+            />
+          </div>
+
+          <div className="px-2 mt-14">
+          <FlavourTable/>
+          </div>
         </div>
-        <div className="w-full h-[300px] px-20 mx-auto lg:container mt-10">
-          {" "}
-          <MyEvents/>
-        </div>
-      </div>
-            )}
+      )}
     </div>
   );
 };

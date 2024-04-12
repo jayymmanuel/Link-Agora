@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 
 const EventBox = ({
   weekDay,
@@ -9,12 +11,13 @@ const EventBox = ({
   poster,
 }) => {
   return (
-    // Event Component
-    <div className="flex max-w-6xl p-6 bg-white border border-gray-200 rounded-lg mb-12">
+
+    <Link to="/event-details">
+    <div className="flex max-w-6xl p-6 bg-zinc-700 border border-zinc-600 rounded-lg hover:bg-navy-blue">
       {/* Item 1 - Date */}
       <div className="flex flex-col items-center mr-4 ml-8 mt-[5rem]">
-        <p className="text-[#f0451f]">{weekDay}</p>
-        <p className="text-2xl text-gray-700 dark:text-gray-400">{dayValue}</p>
+        <p className="text-red-500">{weekDay}</p>
+        <p className="text-2xl text-white">{dayValue}</p>
       </div>
 
       {/* Item 2 - Event Details */}
@@ -22,10 +25,10 @@ const EventBox = ({
         <p className="font-light text-sm ml-14 text-gray-400 mb-2 mt-[3rem]">
           {timeline}
         </p>
-        <h5 className="mb-2 text-lg ml-14 font-bold tracking-tight text-black hover:text-[#01663E]">
+        <h5 className="mb-2 text-lg ml-14 font-bold tracking-tight text-white">
           {eventTitle}
         </h5>
-        <p className="font-normal ml-14 pr-4 text-black text-sm">{eventDetails}</p>
+        <p className="font-normal ml-14 pr-4 text-white text-sm">{eventDetails}</p>
       </div>
 
       {/* Item 3 - Event Poster */}
@@ -46,6 +49,8 @@ const EventBox = ({
         </div>
       </div>
     </div>
+    </Link>
+
   );
 };
 

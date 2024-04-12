@@ -22,19 +22,19 @@ export default function Day({ day, rowIdx }) {
 
   function getCurrentDayClass() {
     return day.format("DD-MM-YY") === dayjs().format("DD-MM-YY")
-      ? "bg-[#007f66] text-white rounded-lg mt-3 w-7"
+      ? "bg-light-blue text-white border font-semibold rounded-lg mt-3 w-7"
       : "";
   }
   return (
-    <div className="border border-[#d7d9dd] hover:border-[#007f66] rounded-lg mr-3 mt-3 flex flex-col bg-[#ffffff]">
+    <div className="bg-zinc-700 border border-zinc-600 hover:border-diamond-blue rounded-lg mr-3 mt-3 flex flex-col">
       <header className="flex flex-col items-center">
         {rowIdx === 0 && (
-          <p className="text-sm mt-1">
+          <p className="text-sm mt-1 text-white font-semibold">
             {day.format("ddd").toUpperCase()}
           </p>
         )}
         <p
-          className={`text-sm p-1 my-1 mt-3 text-center  ${getCurrentDayClass()}`}
+          className={`text-sm text-white font-semibold p-1 my-1 mt-3 text-center  ${getCurrentDayClass()}`}
         >
           {day.format("DD")}
         </p>

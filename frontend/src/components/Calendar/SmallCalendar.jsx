@@ -30,18 +30,21 @@ export default function SmallCalendar() {
     const nowDay = dayjs().format(format);
     const currDay = day.format(format);
     const slcDay = daySelected && daySelected.format(format);
+
     if (nowDay === currDay) {
-      return "bg-[#007f66] rounded-lg text-white";
+      return "bg-light-blue border border-white rounded-lg text-white ";
     } else if (currDay === slcDay) {
-      return "bg-[#8A2623] rounded-lg text-white font-bold";
+      return "bg-navy-blue border border-white rounded-lg text-white font-bold";
     } else {
-      return "";
+      return "text-gray-400"; // Default text color for other days
     }
   }
+
   return (
-    <div className="mt-9">
+    <div className="mt-9 w-full">
+      {/* Header */}
       <header className="flex justify-between">
-        <p className="text-[#007f66] font-bold">
+        <p className="text-white font-bold">
           {dayjs(new Date(dayjs().year(), currentMonthIdx)).format("MMMM YYYY")}
         </p>
         <div>
@@ -49,25 +52,28 @@ export default function SmallCalendar() {
           <button onClick={handlePrevMonth}>
             <ChevronLeft
               size={24}
-              className="text-gray-600 mx-2 cursor-pointer rounded-md border-gray-400 hover:border-[#007f66]  border-2"
+              className="bg-light-blue text-white mx-2 cursor-pointer rounded-md border-white hover:border-navy-blue hover:text-navy-blue border-2"
             />
           </button>
           {/* Right Arrow button */}
           <button onClick={handleNextMonth}>
             <ChevronRight
               size={24}
-              className="text-gray-600 mx-2 cursor-pointer rounded-md border-gray-400 hover:border-[#007f66]  border-2"
+              className="bg-light-blue text-white mx-2 cursor-pointer rounded-md border-white hover:border-navy-blue hover:text-navy-blue border-2"
             />
           </button>
         </div>
       </header>
-      <div className="grid grid-cols-7 grid-rows-6">
+
+      <div className="grid grid-cols-7 grid-rows-6 gap-y-2 gap-x-2 mt-2">
         {currentMonth[0].map((day, i) => (
-          <span key={i} className="text-sm py-1 text-center">
+          // Week Days Symbols
+          <span key={i} className="text-sm py-1 text-center text-gray-400">
             {day.format("dd").charAt(0)}
           </span>
         ))}
         {currentMonth.map((row, i) => (
+          // Days
           <React.Fragment key={i}>
             {row.map((day, idx) => (
               <button
@@ -76,7 +82,7 @@ export default function SmallCalendar() {
                   setSmallCalendarMonth(currentMonthIdx);
                   setDaySelected(day);
                 }}
-                className={`py-1 w-full ${getDayClass(day)}`}
+                className={`w-full ${getDayClass(day)}`} // Adjusted padding here
               >
                 <span className="text-sm">{day.format("D")}</span>
               </button>

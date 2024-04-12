@@ -76,7 +76,7 @@ const Navbar = () => {
   const isUserSignedIn = true;
 
   return (
-    <nav className="bg-[#223146] p-4 px-10 fixed w-full top-0 z-50 shadow-xl">
+    <nav className="bg-navy-blue p-4 px-10 fixed w-full top-0 z-50 shadow-xl">
       <div className="container mx-auto flex justify-between items-center">
           {/* Company Logo */}
           <div>
@@ -108,8 +108,8 @@ const Navbar = () => {
             <div
               ref={dropdownRef}
               className={`relative inline-block text-left mt-4 pb-4 ${
-                isActive("/shop-flavour") ||
-                isActive("/shop-pipe") ||
+                isActive("/upcomingevents") ||
+                isActive("/event-details") ||
                 isActive("/product-detail")
               }`}
             >
@@ -117,7 +117,7 @@ const Navbar = () => {
                 className="flex items-center text-white font-medium focus:outline-none mx-2 text-sm md:text-sm lg:text-base xl:text-md"
                 onClick={toggleDropdown}
               >
-                Products
+                Events
                 {isDropdownOpen ? (
                   <MdKeyboardArrowUp className="ml-2" />
                 ) : (
@@ -129,16 +129,16 @@ const Navbar = () => {
                   <div className="py-2">
                     <Link
                       to="/shop-flavour"
-                      className="block px-4 py-2 text-gray-500 rounded-md hover:bg-gray-200 hover:text-mystique-green"
+                      className="block px-4 py-2 text-gray-500 rounded-md hover:bg-gray-200 hover:text-navy-blue"
                       onClick={closeDropdown}
                     >
-                      Shisha Flavour
+                      Upcoming Events
                     </Link>
                   </div>
                   <div className="py-2">
                     <Link
                       to="/shop-pipes"
-                      className="block px-4 py-2 text-gray-500 rounded-md hover:bg-gray-200 hover:text-mystique-green"
+                      className="block px-4 py-2 text-gray-500 rounded-md hover:bg-gray-200 hover:text-navy-blue"
                       onClick={closeDropdown}
                     >
                       Shisha Pipes
@@ -159,7 +159,7 @@ const Navbar = () => {
 
         {/* (small screen) Menu Items */}
         {showMenuItems && (
-          <div className="lg:hidden absolute top-[4.5rem] left-0 w-full bg-mystique-green border-t text-white">
+          <div className="lg:hidden absolute top-[4.5rem] left-0 w-full bg-navy-blue border-t text-white">
             <Reveal delay={0.6} duration={0.7}>
               <div className="container mx-auto py-2 w-full pr-6 pl-6">
                 <a
@@ -212,7 +212,7 @@ const Navbar = () => {
         {/* User Functions */}
         <div className="hidden lg:flex items-center space-x-6">
         <Link to="/login-register">
-              <button className="py-3 px-4 inline-flex items-center gap-x-2 text-md font-semibold rounded-lg border bg-[#476070] text-gray-100 hover:bg-white  hover:text-amazon-green whitespace-nowrap">
+              <button className="py-3 px-4 inline-flex items-center gap-x-2 text-md font-semibold rounded-lg border bg-light-blue text-gray-100 hover:bg-white  hover:text-navy-blue whitespace-nowrap">
                   Take me to BMF
               </button>
             </Link>
@@ -237,7 +237,7 @@ const Navbar = () => {
             </Link>
           ) : (
             <Link to="/login-register">
-              <button className="py-3 px-4 inline-flex items-center gap-x-2 text-md font-semibold rounded-lg border bg-[#476070] text-gray-100 hover:bg-white  hover:text-amazon-green whitespace-nowrap">
+              <button className="py-3 px-4 inline-flex items-center gap-x-2 text-md font-semibold rounded-lg border bg-light-blue text-gray-100 hover:bg-white  hover:text-amazon-green whitespace-nowrap">
                   Register or Login
               </button>
             </Link>

@@ -8,7 +8,6 @@ import BarLoader from "react-spinners/BarLoader";
 // Import the BigCalendar component
 import BigCalendar from "../components/Calendar/BigCalendar";
 
-
 const Schedule = () => {
   const [loading, setLoading] = useState(false);
   useEffect(() => {
@@ -18,15 +17,15 @@ const Schedule = () => {
     }, 5000);
   }, []);
   return (
-    <div className="flex items-center justify-center min-h-screen bg-[#fafbfd]"> 
-                {loading ? (
+    <div className="flex items-center justify-center h-screen">
+      {loading ? (
         <BarLoader color={"#01663E"} loading={loading} size={150} />
       ) : (
-      <div className="w-full p-5">
-        {/* Render the BigCalendar component */}
-        <BigCalendar />
-      </div>
-                  )}
+        <div className="w-full p-5">
+          {/* Render the BigCalendar component */}
+          <BigCalendar />
+        </div>
+      )}
     </div>
   );
 };
